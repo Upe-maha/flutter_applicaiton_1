@@ -19,6 +19,7 @@ class _CategoryNavbarState extends State<CategoryNavbar> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     final categories = ["All", "Travel", "News", "Vlog"];
 
     return SizedBox(
@@ -34,12 +35,14 @@ class _CategoryNavbarState extends State<CategoryNavbar> {
           final isHovered = _hoveredIndex == index;
 
           final backgroundColor = isSelected
-              ? Colors.black
+              ? colorScheme.primary
               : isHovered
-              ? Colors.grey.shade300
-              : Colors.grey.shade200;
+              ? colorScheme.surfaceContainerHighest
+              : colorScheme.surface;
 
-          final textColor = isSelected ? Colors.white : Colors.black87;
+          final textColor = isSelected
+              ? colorScheme.onPrimary
+              : colorScheme.onSurface;
 
           return MouseRegion(
             cursor: SystemMouseCursors.click,
@@ -62,18 +65,20 @@ class _CategoryNavbarState extends State<CategoryNavbar> {
                     color: backgroundColor,
                     borderRadius: BorderRadius.circular(30),
                     border: Border.all(
-                      color: isSelected ? Colors.black : Colors.grey.shade300,
+                      color: isSelected
+                          ? colorScheme.primary
+                          : colorScheme.outlineVariant,
                     ),
                     boxShadow: [
                       if (isSelected)
                         BoxShadow(
-                          color: const Color.fromRGBO(0, 0, 0, 0.18),
+                          color: colorScheme.primary.withOpacity(0.22),
                           blurRadius: 10,
                           offset: const Offset(0, 4),
                         ),
                       if (isHovered && !isSelected)
                         BoxShadow(
-                          color: const Color.fromRGBO(0, 0, 0, 0.06),
+                          color: colorScheme.shadow.withOpacity(0.06),
                           blurRadius: 6,
                           offset: const Offset(0, 3),
                         ),

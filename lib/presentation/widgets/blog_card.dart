@@ -8,10 +8,16 @@ class BlogCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Card(
       elevation: 4,
       clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      color: colorScheme.surface,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(color: colorScheme.outlineVariant),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -33,7 +39,7 @@ class BlogCard extends StatelessWidget {
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.black87,
+                      color: colorScheme.inverseSurface,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Row(
@@ -43,8 +49,8 @@ class BlogCard extends StatelessWidget {
                         const SizedBox(width: 2),
                         Text(
                           blog.review.toString(),
-                          style: const TextStyle(
-                            color: Colors.white,
+                          style: TextStyle(
+                            color: colorScheme.onInverseSurface,
                             fontSize: 12,
                           ),
                         ),
@@ -67,9 +73,10 @@ class BlogCard extends StatelessWidget {
                     blog.title,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
+                      color: colorScheme.onSurface,
                     ),
                   ),
 
@@ -81,7 +88,7 @@ class BlogCard extends StatelessWidget {
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        color: Colors.grey.shade700,
+                        color: colorScheme.onSurfaceVariant,
                         fontSize: 11,
                       ),
                     ),
